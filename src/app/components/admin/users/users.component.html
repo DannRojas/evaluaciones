@@ -1,0 +1,37 @@
+<section class="mt-5">
+  <div class="container">
+    <div class="row">
+      <button mdbBtn size="sm" type="button" color="mdb-color" mdbWavesEffect class="float-left mt-5"
+        (click)="onAddUser()" data-toggle="modal" data-target="#modalUsers">Añadir Usuario</button>
+    </div>
+    <div class="row mt-3">
+
+      <table class="table table-hover mat-elevation-z8">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usr of users; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{usr.name}}</td>
+            <td>{{usr.email}}</td>
+            <td>{{usr.password}}</td>
+            <td>
+              <button type="button" mdbBtn color="danger" size="sm" mdbWavesEffect
+                (click)="onDeleteUser(usr.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+<app-modal></app-modal>

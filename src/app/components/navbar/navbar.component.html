@@ -1,0 +1,42 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark mdb-color lighten-30 scrolling-navbar fixed-top"
+  [containerInside]="false">
+  <mdb-navbar-brand class="ml-3"><a class="navbar-brand" href="#">Evaluaciones Online</a></mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav ml-auto" *ngIf='isLogged'>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='home'>
+          <mdb-icon fas icon="home"></mdb-icon>Inicio
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink='results'>
+          <mdb-icon fas icon="list"></mdb-icon> Resultados
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link waves-light" routerLink='users' mdbWavesEffect>
+          <mdb-icon fas icon="users"></mdb-icon> Usuarios
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link waves-light" routerLink='evaluations' mdbWavesEffect>
+          <mdb-icon fas icon="folder-open"></mdb-icon> Evaluaciones
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link waves-light" routerLink='records' mdbWavesEffect>
+          <mdb-icon fas icon="clipboard"></mdb-icon> Records
+        </a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <img src="{{photoUrl}}" width="30" class="rounded-circle"> {{name}}<span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" routerLink='user/profile' mdbWavesEffect>Perfil</a>
+          <a class="dropdown-item waves-light"  (click)='onLogout()' mdbWavesEffect>Salir</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>

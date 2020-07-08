@@ -1,0 +1,37 @@
+<section class="mt-5">
+  <div class="container">
+    <div class="row mt-5" wow fadeInTop>
+
+      <table class=" mt-5 table table-hover mat-elevation-z8">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuario</th>
+            <!-- <th scope="col">Evaluacion</th> -->
+            <th scope="col">Correctas</th>
+            <th scope="col">Incorrectas</th>
+            <th scope="col">Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reg of registryes; index as i">
+            <td scope="row">{{i+1}}</td>
+            <div class="col-md-8 d-flex justify-content-center align-items-center">
+              <td *ngFor="let us of users">
+                <p *ngIf="us.id == reg.idUsr">{{us.name}}</p>
+              </td>
+              <td *ngFor="let ev of evaluations">
+                  <p *ngIf="ev.idEv == reg.idEv">{{ev.title}}</p>
+                </td>
+            </div>
+
+            <td>{{reg.correctQ}}</td>
+            <td>{{reg.incorrectQ}}</td>
+            <td>{{reg.note}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>

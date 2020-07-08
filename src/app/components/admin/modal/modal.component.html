@@ -1,0 +1,160 @@
+<div class="modal fade" id="modalEvaluations" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ !this.evaluationServ.selectedEvaluation.idEv ? 'Crear Evaluación' : 'Modificar Evaluación'}}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="formEvaluation" #formEvaluation="ngForm" (ngSubmit)="onSaveEvaluation()">
+          <input name="adminId" type="hidden" [(ngModel)]="evaluationServ.selectedEvaluation.adminId">
+          <input name="idEvaluation" type="hidden" [(ngModel)]="evaluationServ.selectedEvaluation.idEv">
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Título" name="titulo" [(ngModel)]="evaluationServ.selectedEvaluation.title">
+          </mat-form-field>
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Portada" name="portada"
+              [(ngModel)]="evaluationServ.selectedEvaluation.coverPage">
+          </mat-form-field>
+          <mat-form-field class="ml-3" style="width: 90%">
+            <textarea matInput placeholder="Descripción" name="descripcion"
+              [(ngModel)]="evaluationServ.selectedEvaluation.description"></textarea>
+          </mat-form-field>
+          <div *ngIf="evAct" class="text-danger">
+            <p>No se permiten campos vacios</p>
+          </div>
+          <button type="button" (click)="desacEv()" class="btn btn-secondary" #btnClose
+            data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Usuarios -->
+
+<div class="modal fade" id="modalUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">
+          Añadir Pregunta
+        </h5>
+        <button type="button" class="closeU" #btnCloseU data-dismiss="modal" aria-label="CloseU">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="formUser" #formUser="ngForm" (ngSubmit)="onSaveUser()">
+          <input name="adminId" type="hidden" [(ngModel)]="userServ.selectedUser.adminId">
+          <input name="photoURL" type="hidden" [(ngModel)]="userServ.selectedUser.photoUrl">
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Nombre Completo" name="nombre" [(ngModel)]="userServ.selectedUser.name">
+          </mat-form-field>
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Correo Electrónico" name="email" [(ngModel)]="userServ.selectedUser.email">
+          </mat-form-field>
+          <mat-form-field class="ml-3" style="width: 90%">
+            <input matInput placeholder="Contraseña" name="password" [(ngModel)]="userServ.selectedUser.password">
+          </mat-form-field>
+          <div *ngIf="usrAct" class="text-danger">
+            <p>No se permiten campos vacios</p>
+          </div>
+          <button type="button" (click)="desacUs()" class="btn btn-secondary" #btnClose
+            data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Questions -->
+
+<div class="modal fade" id="modalQuestions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">
+          {{ !this.questionServ.selectedQuestion.idQ ? 'Añadir Pregunta' : 'Modificar Pregunta'}}
+        </h5>
+        <button type="button" class="closeQ" #btnCloseQ data-dismiss="modal" aria-label="CloseQ">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="formQuest" #formUser="ngForm" (ngSubmit)="onSaveQuestion()">
+          <input name="idEv" type="hidden" [(ngModel)]="questionServ.selectedQuestion.idEv">
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Pregunta" name="pregunta"
+              [(ngModel)]="questionServ.selectedQuestion.description">
+          </mat-form-field>
+          <div *ngIf="quesAct" class="text-danger">
+              <p>No se permiten campos vacios</p>
+            </div>
+          <button type="button" (click)="desacQu()" class="btn btn-secondary" #btnClose data-dismiss="modal" rounded="true">Cerrar</button>
+          <button type="submit" class="btn btn-primary" rounded="true">Enviar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalResponse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">
+          Añadir Respuesta
+        </h5>
+        <button type="button" class="closeR" #btnCloseR data-dismiss="modal" aria-label="CloseQ">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="formResp" #formUser="ngForm" (ngSubmit)="onSaveResponse()">
+          <!-- <input name="idQ" type="hidden" [(ngModel)]="responseServ.selectedResponse.idQ"> -->
+          <mat-form-field style="width: 90%" class="ml-3">
+            <input matInput placeholder="Respuesta" name="respuesta"
+              [(ngModel)]="responseServ.selectedResponse.description">
+          </mat-form-field>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-6 col-xs-12 mx-auto">
+              <mat-radio-group style="width: 90%" aria-label="Seleccione una opción" name="kind" [(ngModel)]="kind">
+                <mat-radio-button name="tipo" value=1> Verdadero </mat-radio-button>
+                <mat-radio-button class="ml-2" name="tipo" value=2> Falso </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf="resAct" class="text-danger">
+              <p>No se permiten campos vacios</p>
+            </div>
+          <button type="button" (click)="desacRs()" class="btn btn-secondary" #btnClose data-dismiss="modal" rounded="true">Cerrar</button>
+          <button type="submit" class="btn btn-primary" rounded="true">Enviar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

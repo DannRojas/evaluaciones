@@ -1,0 +1,86 @@
+<section id="questions" class="mt-5">
+
+  <div class="container">
+
+    <div class="row">
+      <button mdbBtn size="sm" type="button" color="mdb-color" mdbWavesEffect class="float-left mt-5" (click)="onAddQuestion()"
+        data-toggle="modal" data-target="#modalQuestions" rounded="true">Añadir Pregunta</button>
+    </div>
+
+    <div class="cards" *ngFor="let question of questions">
+
+      <div class="row">
+
+        <div class="mt-3 col-xs-12 col-sm-10 col-md-8 mx-auto">
+
+          <mdb-card>
+
+            <!--Header-->
+            <div class="header deep-blue-gradient">
+
+              <div class="row d-flex justify-content-center">
+                <h4 class="white-text mb-0 py-5">{{question.description}}</h4>
+              </div>
+
+            </div>
+            <!--Header-->
+
+            <div class="col-md 12">
+              <div class="text-center">
+                <p>Respuestas:</p>
+              </div>
+            </div>
+
+            <mdb-card-body class="mx-4">
+
+              <div class="body" *ngFor="let response of responses">
+                <div class="if" *ngIf="response.idQ == question.idQ">
+                  <div class="row d-flex justify-content-center">
+                    <h5>{{response.description}}</h5>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <p>{{ !response.kind ? 'Falso' : 'Verdadero'}}</p>
+                    <button type="button" size="sm" mdbBtn color="danger" rounded="true" class="z-depth-1a" (click)="onDeleteResponse(response.idR)">Eliminar</button>
+                  </div>
+                    
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="text-center">
+                  <a mdbBtn floating="true" size="lg" gradient="blue" mdbWavesEffect (click)="onAddResponse(question.idQ)"
+                  data-toggle="modal" data-target="#modalResponse">
+                    <mdb-icon fas icon="plus-circle"></mdb-icon>
+                  </a>
+                </div>
+              </div>
+
+              <!--Grid row-->
+              <div class="row d-flex align-items-center mb-3 mt-3">
+
+                <!--Grid column-->
+                <div class="col-md-12">
+                  <div class="text-center">
+                    <button type="button" mdbBtn color="danger" rounded="true" class="z-depth-1a" (click)="onDeleteQuestion(question.idQ)">Eliminar</button>
+                    <button type="button" mdbBtn color="primary" rounded="true" class="z-depth-1a" data-toggle="modal" data-target="#modalQuestions" (click)="onPreUpdateQuestion(question)" >Modificar</button>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+            </mdb-card-body>
+
+          </mdb-card>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<app-modal></app-modal>

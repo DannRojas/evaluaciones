@@ -1,0 +1,80 @@
+<div class="view">
+  <div class="full-bg-img">
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+      <div class="container">
+        <div class="mt-5 row d-flex justify-content-center align-items-center">
+          <!-- text responsive -->
+          <div class="col-md-6 text-white text-center wow fadeInLeft">
+            <h1 class="h1-responsive">Sistema de Evaluaciones en Línea</h1>
+            <hr class="bg-light">
+            <p class="h5-responsive">Un sistema que nos permite hacer la creación de evaluaciones, así como tambien
+              tener un control de los usuarios que podrán visualizar dichas evaluaciones y automatizar
+              los resultados de las mismas</p>
+          </div>
+          <!-- formulario -->
+          <div class="col-md-6 wow fadeInRight">
+            <mat-card class="z-depth-1-half">
+              <section id="login">
+                <mat-card-header>
+                  <mat-card-title>
+                    <h3>Iniciar Sesión</h3>
+                  </mat-card-title>
+                  <mat-card-subtitle>Iniciar sesión
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <form (ngSubmit)="getListUsers()">
+                    <mat-form-field style="width: 90%" class="ml-3">
+                      <input matInput placeholder="Correo Electrónico" [formControl]="em" required [(ngModel)]="email" name="em">
+                      <mat-error *ngIf="em.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 90%" class="ml-3">
+                      <input matInput placeholder="Contraseña" name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <button class="btn btn-block" mat-raised-button color="primary" type="submit">Iniciar
+                      Sesión</button>
+                  </form>
+
+                  <div class="advertencia text-danger mt-1" *ngIf="validation">
+                    <p>Usuario o contraseña incorrectos</p>
+                  </div>
+
+                  <p style="margin-top: 8px">Inicia sesión con tus redes sociales!</p>
+                  <div class="d-flex justify-content-center">
+                    <button (click)='onLoginFacebook()' type="button" mdbBtn color="white" rounded="true"
+                      class="mr-md-3 z-depth-1a waves-light" mdbWavesEffect>
+                      <mdb-icon fab icon="facebook" class="indigo-text text-center"></mdb-icon>
+                    </button>
+                    <!--Google +-->
+                    <button (click)='onLoginGoogle()' type="button" mdbBtn color="white" rounded="true"
+                      class="z-depth-1a waves-light" mdbWavesEffect>
+                      <mdb-icon fab fab icon="google-plus" class="indigo-text"></mdb-icon>
+                    </button>
+                  </div>
+                </mat-card-content>
+              </section>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <section class="row mt-5 align-items-center wow fadeInUp">
+    <div class="col-md-6">
+      <img src="../../../../assets/mdbootstrap.jpg" alt="" class="img-fluid z-depth-1-half">
+    </div>
+    <div class="col-md-6 mt-5 mt-md-0 text-center">
+      <h3 class="h3">Material Design by MDBootstrap</h3>
+      <p>Grán parte del material de diseño se realizó utilizando mdbootstrap, si quieres obtener más información sobre esta herramienta haz clic sobre el siguiente botón</p>
+      <a href="https://mdbootstrap.com/" class="btn btn-indigo btn-md">MDBootstrap</a>
+    </div>
+  </section>
+</main>
+<br>
+<br>

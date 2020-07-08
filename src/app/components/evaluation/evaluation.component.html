@@ -1,0 +1,87 @@
+<section class="mt-5">
+  <div class="container">
+
+    <div class="cards">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 mx-auto mt-5">
+
+          <mdb-card>
+
+            <div class="header blue-gradient">
+              <div class="row d-flex">
+                <h4 class="white-text md-0 py-5 mx-auto">
+                  {{question.description}}
+                </h4>
+              </div>
+            </div>
+
+            <div class="col-md 12">
+              <div class="text-center">
+                <p>Respuestas:</p>
+              </div>
+            </div>
+
+            <mdb-card-body class="mx-4">
+
+
+              <form (ngSubmit)="addResp()">
+                <div class="body">
+                  <div class="row d-flex-justify-content-center">
+                    <mat-radio-group aria-label="Seleccione una opción" name="respuesta" [(ngModel)]="resp">
+                      <mat-radio-button *ngFor="let response of responses" class="col-md-12" value={{response.idR}}>
+                        {{response.description}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+
+                <div class="row d-flex align-items-center" *ngIf="isEnd; else final">
+                  <h4 class="col-md-12 mt-2 text-center">Evaluación finalizada</h4>
+                  <button type="button" mdbBtn color="primary" rounded="true"
+                    class="z-depth-1a mx-auto" data-toggle="modal" data-target="#modalConfirmation">Enviar</button>
+                </div>
+
+                <ng-template #final>
+                  <div class="row d-flex align-items-center">
+                    <button type="submit" mdbBtn color="primary" rounded="true"
+                      class="z-depth-1a mx-auto">Responder</button>
+                  </div>
+                </ng-template>
+              </form>
+
+
+
+            </mdb-card-body>
+
+          </mdb-card>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel1">
+          Evaluación Concluida
+        </h4>
+      </div>
+      <div class="modal-body">
+        <h5>Respuestas correctas: {{correct}}</h5>
+        <h5>Respuestas incorrectas: {{incorrect}}</h5>
+        <h5>Nota final: {{note}}</h5>
+        <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal" rounded="true" (click)="onRedirect()">Aceptar</button>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
